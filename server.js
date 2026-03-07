@@ -22,7 +22,7 @@ const dataFilePath = path.join(__dirname, "data.json");
 
 // you can write 'console.log(__dirname);' here to check the server is finding the right path
 
-// Function to read data from the JSON file
+// Function to read data from the data.JSON file
 const readData = () => {
   if (!fs.existsSync(dataFilePath)) {
     return [];

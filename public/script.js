@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const dataForm = document.getElementById("data-form");
   const dataInput = document.getElementById("data-input");
   
-let editingId = null; // tracks which note is being edited
+  let editingId = null; // tracks which note is being edited
 
   // script.js runs in the browser to control the user interface, 
   // send requests to the server, and display the notes on the page
@@ -37,37 +37,33 @@ let editingId = null; // tracks which note is being edited
         deleteBtn.classList.add("delete-btn"); // this is the class to put a space between the text and the button
 
         deleteBtn.addEventListener("click", async () => {
-         const noteId = li.dataset.id;       // get the note's id from the li
-        
+          const noteId = li.dataset.id;       // get the note's id from the li
+          try {
+            const response = await fetch(`/data/${noteId}`, {
+              method: "DELETE",
+            });
 
-    try {
-    const response = await fetch(`/data/${noteId}`, { // 'await' only works inside an async function' in the addeventlistener which without is only a normal synchronos
-      method: "DELETE",
-    });
-
-    if (response.ok) {
-      console.log(`Note ${noteId} deleted successfully`);
-      fetchData(); // refresh the list after deletion
-    } else {
-      console.error("Failed to delete note:", response.statusText);
-    }
-  } catch (error) {
-    console.error("Error deleting note:", error);
-  }
-  });
+            if (response.ok) {
+              console.log(`Note ${noteId} deleted successfully`);
+              fetchData(); // refresh the list after deletion
+            } else {
+              console.error("Failed to delete note:", response.statusText);
+            }
+          } catch (error) {
+            console.error("Error deleting note:", error);
+          }
+        });
 
         li.appendChild(editBtn); // puts the edit button in the list
         li.appendChild(deleteBtn); // puts the delete button in the list
         dataList.appendChild(li);
       });
-
-
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
-// HANDLE FORM SUBMISSION (CREATE OR EDIT)
+  // HANDLE FORM SUBMISSION (CREATE OR EDIT)
   dataForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     const noteData = { text: dataInput.value };
@@ -75,7 +71,7 @@ let editingId = null; // tracks which note is being edited
     try {
       if (editingId) {
         // SEND PUT REQUEST TO UPDATE NOTE
-        const response = await fetch(`/data/${editingId}`, {
+        await fetch(`/data/${editingId}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(noteData),
@@ -83,7 +79,7 @@ let editingId = null; // tracks which note is being edited
         editingId = null; // reset after editing
       } else {
         // SEND POST REQUEST TO CREATE NOTE
-        const response = await fetch("/data", {
+        await fetch("/data", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(noteData),
@@ -97,8 +93,8 @@ let editingId = null; // tracks which note is being edited
     }
   });
 
-// YOU ALSO NEED TO DO THIS to make the delete button work add the code in the app.delete("/data/:id", (req, res) => { ... in the server.js file but above the wildcard
+  // YOU ALSO NEED TO DO THIS to make the delete button work add the code in the app.delete("/data/:id", (req, res) => { ... in the server.js file but above the wildcard
 
-// Initial fetch when page loads
+  // Initial fetch when page loads
   fetchData();
 });
