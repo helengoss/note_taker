@@ -78,6 +78,22 @@ app.delete("/data/:id", (req, res) => {
   res.json({ message: `Note ${noteId} deleted successfully` });
 });
 
+// HANDLE PUT REQUEST TO UPDATE A NOTE BY ID (added for Edit button functionality)
+app.put("/data/:id", (req, res) => {
+  const noteId = req.params.id;            
+  const updatedText = req.body.text;       // get the new text 
+  let currentData = readData();           
+
+  const noteIndex = currentData.findIndex(note => note.id === noteId); // find note index
+  if (noteIndex !== -1) {
+    currentData[noteIndex].text = updatedText; // update the note
+    writeData(currentData);                     // save updated notes
+    res.json({ message: `Note ${noteId} updated successfully`, data: currentData[noteIndex] });
+  } else {
+    res.status(404).json({ message: "Note not found" });
+  }
+});
+
 // Wildcard route to handle undefined routes
 app.all("*", (req, res) => {
   res.status(404).send("Route not found");
