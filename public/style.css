@@ -3,6 +3,10 @@ body {
     background-color: #f4f4f4;
     text-align: center;
     margin: 20px;
+    background-image: url("notebookbg.jpg");
+    background-repeat: repeat;       
+    background-size: auto;           
+    background-position: top left;
 }
 
 .container {
@@ -14,9 +18,20 @@ body {
 }
 
 .delete-btn {
-  margin-left: 10px; /* space between the text and the button */
+  margin-left: 5px; /* space between the text and the button */
+  cursor: pointer;    /* makes it clear it's clickable (changes cursor to a hand) */
+  padding: 2px 4px;         
+  font-size: 0.9rem;        
+  min-width: 0;            
+  width: auto;             
+  box-sizing: border-box;     
+}
+
+.edit-btn {
+  margin-left: 5px; /* space between the text and the button */
   cursor: pointer;    /* makes it clear it's clickable (changes cursor to a hand) */
 }
+
 
 h1 {
     color: #333;

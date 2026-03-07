@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
       
         // EDIT BUTTON
         const editBtn = document.createElement("button");
-        editBtn.textContent = "Edit"; // displays 'Edit' ready to be turned into a button
+        editBtn.textContent = "change"; // displays 'Edit' ready to be turned into a button
         editBtn.classList.add("edit-btn"); // NEED TO PUT A CLASS FOR THIS
 
         editBtn.addEventListener("click", () => {
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // DELETE BUTTON
         const deleteBtn = document.createElement("button");
-        deleteBtn.textContent = "Delete"; // displays delete ready to be turned into a button
+        deleteBtn.textContent = "x"; // displays delete ready to be turned into a button
         deleteBtn.classList.add("delete-btn"); // this is the class to put a space between the text and the button
 
         deleteBtn.addEventListener("click", async () => {
