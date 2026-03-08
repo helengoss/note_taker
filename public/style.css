@@ -1,3 +1,8 @@
+:root {
+  --li-font: 'Dancing Script', cursive;
+  --text-color: #44d2b6;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -27,7 +32,7 @@ body {
   width: auto;             
   box-sizing: border-box; 
   background: #feff98;
-  color: #44d2b6;  
+  color: var(--text-color); 
   position: absolute; /* lets us place it inside the li */
   top: 10px;           /* distance from top edge */
   right: 10px;         /* distance from right edge */  
@@ -38,7 +43,7 @@ body {
   cursor: pointer;    
   padding: 2px 4px;
   background: #feff98;
-  color: #44d2b6;
+  color: var(--text-color);
   min-width: 0;             /* removes the browser default min width */
   width: auto;              /* lets the width fit text + padding */
   box-sizing: border-box;
@@ -49,7 +54,8 @@ body {
 }
 
 h1 {
-    color: #333;
+    color: var(--text-color);
+    font-size: 2rem; 
 }
 
 ul {
@@ -65,6 +71,9 @@ li {
     padding: 10px 40px 40px 10px; /* top, right, bottom, left */
     border-radius: 10px;
     position: relative; /* makes this the positioning reference so i can control the positions of the buttons */
+    font-family: var(--li-font);
+    font-size: 1.5rem; 
+    color: var(--text-color);
 }
 
 form {
