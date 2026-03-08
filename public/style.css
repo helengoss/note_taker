@@ -12,8 +12,9 @@ body {
 .container {
     max-width: 400px;
     margin: 0 auto;
-    background: white;
+    background: #feff98;
     padding: 20px;
+    border-radius:20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -24,14 +25,28 @@ body {
   font-size: 0.9rem;        
   min-width: 0;            
   width: auto;             
-  box-sizing: border-box;     
+  box-sizing: border-box; 
+  background: #feff98;
+  color: #44d2b6;  
+  position: absolute; /* lets us place it inside the li */
+  top: 10px;           /* distance from top edge */
+  right: 10px;         /* distance from right edge */  
 }
 
 .edit-btn {
-  margin-left: 5px; /* space between the text and the button */
-  cursor: pointer;    /* makes it clear it's clickable (changes cursor to a hand) */
+  margin-left: 5px; 
+  cursor: pointer;    
+  padding: 2px 4px;
+  background: #feff98;
+  color: #44d2b6;
+  min-width: 0;             /* removes the browser default min width */
+  width: auto;              /* lets the width fit text + padding */
+  box-sizing: border-box;
+  position: absolute;       /* position relative to li */
+  bottom: 5px;              /* distance from bottom of li */
+  left: 50%;
+  transform: translateX(-50%); /* shift to truly center the button */
 }
-
 
 h1 {
     color: #333;
@@ -40,13 +55,16 @@ h1 {
 ul {
     list-style-type: none;
     padding: 0;
+    background: transparent;
+    border-radius: 20px;
 }
 
 li {
-    background: #e3e3e3;
+    background: #ffcce3;
     margin: 5px 0;
-    padding: 10px;
-    border-radius: 5px;
+    padding: 10px 40px 40px 10px; /* top, right, bottom, left */
+    border-radius: 10px;
+    position: relative; /* makes this the positioning reference so i can control the positions of the buttons */
 }
 
 form {
